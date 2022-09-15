@@ -33,6 +33,7 @@ public class ViewLoaderImpl implements ViewLoader {
     protected final ApplicationContext applicationContext;
     protected final ViewManager viewManager;
     protected final LocaleText localeText;
+    protected Object controller;
 
     protected float scale = 1f;
 
@@ -117,6 +118,11 @@ public class ViewLoaderImpl implements ViewLoader {
         return loadComponent(loader);
     }
 
+    @Override
+    public Object getController() {
+        return this.controller;
+    }
+
     //endregion
 
     //region Functions
@@ -134,6 +140,7 @@ public class ViewLoaderImpl implements ViewLoader {
         loader.setResources(localeText.getResourceBundle());
 
         try {
+            this.controller = loader.getController();
             return loader.load();
         } catch (IOException e) {
             log.error(e.getMessage(), e);

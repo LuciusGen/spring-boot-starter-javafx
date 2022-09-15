@@ -77,4 +77,6 @@ public interface ViewLoader {
      * @return Returns the root node of the loaded FXML view if successfully loaded, else null.
      */
     <T extends Node> T load(String view, Object controller);
+
+    Object getController();
 }
